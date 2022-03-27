@@ -4,6 +4,10 @@ import br.com.banco.model.Transferencia;
 import br.com.banco.service.TransferenciaService;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +27,8 @@ public class TransferenciaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Transferencia>> getAllTransferencia(){
-        return ResponseEntity.status(HttpStatus.OK).body(transferenciaService.findAll());
+    public ResponseEntity<Page<Transferencia>> getAllTransferencia(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+        return ResponseEntity.status(HttpStatus.OK).body(transferenciaService.findAll(pageable));
     }
 
     @GetMapping("/{id}")

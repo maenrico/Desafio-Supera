@@ -3,6 +3,8 @@ package br.com.banco.service;
 import br.com.banco.model.Transferencia;
 import br.com.banco.repository.TransferenciaRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,8 +20,8 @@ public class TransferenciaService {
         this.transferenciaRepository = transferenciaRepository;
     }
 
-    public List<Transferencia> findAll(){
-        return transferenciaRepository.findAll();
+    public Page<Transferencia> findAll(Pageable pageable){
+        return transferenciaRepository.findAll(pageable);
     }
 
     public Optional<Transferencia> findById(Long id){
