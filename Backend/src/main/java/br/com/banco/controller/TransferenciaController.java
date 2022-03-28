@@ -27,8 +27,8 @@ public class TransferenciaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Transferencia>> getAllTransferencia(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
-        return ResponseEntity.status(HttpStatus.OK).body(transferenciaService.findAll(pageable));
+    public ResponseEntity<List<Transferencia>> getAllTransferencia(){
+        return ResponseEntity.status(HttpStatus.OK).body(transferenciaService.findAll());
     }
 
     @GetMapping("/{id}")
@@ -75,7 +75,29 @@ public class TransferenciaController {
         return ResponseEntity.status(HttpStatus.OK).body(transferenciaService.save(transferenciaModel));
     }
 
+    @GetMapping("/data")
+    public ResponseEntity<Object> getTransferenciaByData(LocalDateTime localDateTime){
 
+        Optional<Transferencia> transferenciaOptional = transferenciaService.findByDataTransferencia(localDateTime);
+
+        if(transferenciaOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(transferenciaOptional.get());
+
+    }
+
+    @GetMapping("/nome")
+    public ResponseEntity<Object> getTransferenciaByNomeOperador(String nome){
+
+        Optional<Transferencia> transferenciaOptional = transferenciaService.findByNomeOperadorTransacao(nome);
+
+        if(transferenciaOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi encontrado.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(transferenciaOptional.get());
+
+    }
 
 
 

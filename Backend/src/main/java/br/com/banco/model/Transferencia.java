@@ -10,7 +10,9 @@ public class Transferencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDateTime dataTransferencia;
+
     private BigDecimal valor;
 
     @Enumerated(EnumType.STRING)

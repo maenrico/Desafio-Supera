@@ -1,0 +1,9 @@
+.btn-position{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5vh;
+   }
+   .form{
+      margin: 1vh 5vh;
+   }
+   

@@ -1,11 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
-const TRANSFERENCIA_API_BASE_URL = "http://localhost:8080/transferencia"
+const TRANSFERENCIA_BASE_URL = "http://localhost:8080/transferencia";
 
-class TransferenciaService{
-    
-    getTransferencia(){
-        return axios.get(TRANSFERENCIA_API_BASE_URL)
-    }
+class TransacaoService {
+
+  getTransferencia() {
+    return axios.get(TRANSFERENCIA_BASE_URL);
+  }
+
+  PostTransferencia(transferencia) {
+    return axios.post(TRANSFERENCIA_BASE_URL, transferencia);
+  }
 }
-export default new TransferenciaService();
+
+export default  new TransacaoService()

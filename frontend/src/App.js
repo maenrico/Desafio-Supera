@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import './app.css';
-import ListTransferenciaComponent from './components/ListTransferencia';
+import React from "react";
+import TransferenciaTable from "./components/TransferenciaTable";
+import NavBar from './components/NavBar';
 
-
- const App = () => {
+export default function App() {
   
-  
-  return(
-    <ListTransferenciaComponent />
-  )
-
-}
-
-export default App;
+  return (
+    <div className="App">
+      <NavBar />
+      <TransferenciaTable/>
+    
+    </div>
+);
+  }
